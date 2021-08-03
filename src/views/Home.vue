@@ -8,9 +8,7 @@
       <div class="customSelect" :class="selectOpen ? 'open' : ''">
         <div class="selectedValue" @click="selectOpen = !selectOpen">
           <span class="selectedText">
-            {{
-              selectedRegion ? selectedRegion : "Filter by Region"
-            }}
+            {{ selectedRegion ? selectedRegion : "Filter by Region" }}
           </span>
           <i class="fas fa-angle-down icon"></i>
         </div>
@@ -26,10 +24,20 @@
         </div>
       </div>
     </div>
+    <div class="country-items">
+      <country-item></country-item>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.country-items {
+  margin: 40px 0;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-gap: 3rem;
+}
 .searchSection {
   display: flex;
   justify-content: space-between;
@@ -39,7 +47,6 @@
   }
 
   .customSelect {
-    
     position: relative;
 
     @media (max-width: 768px) {
@@ -62,7 +69,7 @@
       }
 
       .icon {
-        transition: .3s all ease-in;
+        transition: 0.3s all ease-in;
       }
 
       .selectedText {
@@ -72,14 +79,14 @@
     }
 
     &.open {
-        .icon {
-          transform: rotate(180deg);
-        }
+      .icon {
+        transform: rotate(180deg);
+      }
 
-        .select-dropdown {
-          visibility: visible;
-          opacity: 1;
-        }
+      .select-dropdown {
+        visibility: visible;
+        opacity: 1;
+      }
     }
 
     .select-dropdown {
@@ -88,7 +95,7 @@
       font-size: 15px;
       font-weight: 300;
       opacity: 0;
-      transition: .3s all linear;
+      transition: 0.3s all linear;
       margin: 5px 0px;
       position: absolute;
       padding: 10px 0;
@@ -104,11 +111,11 @@
       width: 100%;
 
       .select-dropdown-item {
-          padding: 5px 20px;
-          width: 100%;
-          &:hover {
-            background-color: var(--app-background-color);
-          }
+        padding: 5px 20px;
+        width: 100%;
+        &:hover {
+          background-color: var(--app-background-color);
+        }
       }
     }
   }
@@ -159,9 +166,12 @@
 </style>
 
 <script>
+import CountryItem from "../components/CountryItem.vue";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    CountryItem,
+  },
   data() {
     return {
       selectedRegion: null,
@@ -190,16 +200,14 @@ export default {
       ],
     };
   },
-  created() {
-    
-  },
+  created() {},
   methods: {
-    setRegion(id){
-      if(id != null){
-        this.selectedRegion = this.regions.filter(r => r.id == id)[0].text;
-        this.selectOpen = !this.selectOpen
+    setRegion(id) {
+      if (id != null) {
+        this.selectedRegion = this.regions.filter((r) => r.id == id)[0].text;
+        this.selectOpen = !this.selectOpen;
       }
-    }
+    },
   },
 };
 </script>
