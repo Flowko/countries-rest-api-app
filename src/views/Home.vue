@@ -24,20 +24,12 @@
         </div>
       </div>
     </div>
-    <div class="country-items">
-      <country-item></country-item>
-    </div>
+    <country-item></country-item>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.country-items {
-  margin: 40px 0;
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  grid-gap: 3rem;
-}
+
 .searchSection {
   display: flex;
   justify-content: space-between;
