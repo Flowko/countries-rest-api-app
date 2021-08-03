@@ -6,6 +6,7 @@
         class="country-item"
         v-for="(country, index) in paginatedCountries"
         v-bind:key="index"
+        @click="openCountry(country.alpha3Code)"
       >
         <img
           :src="country.flag"
@@ -14,7 +15,7 @@
         />
         <div class="country-details">
           <h2>{{ country.name }}</h2>
-          <p><strong>Population:</strong> {{ country.population }}</p>
+          <p><strong>Population:</strong> {{ numberWithCommas(country.population) }}</p>
           <p><strong>Region:</strong> {{ country.region }}</p>
           <p><strong>Capital:</strong> {{ country.capital }}</p>
         </div>
@@ -64,6 +65,13 @@ export default {
     loadMore() {
       this.currentPage += 1;
     },
+    openCountry(id){
+      this.$router.push(`/country/${id}`);
+    },
+    numberWithCommas(x) {
+      if(x)
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
   },
   mounted() {
     this.$store.dispatch("getCountries");
@@ -102,6 +110,7 @@ export default {
     grid-gap: 3rem;
 
     .country-item {
+      cursor: pointer;
       background: var(--app-elements-background-color);
       margin: 10px 0 0 2%;
       border-radius: 6px;
