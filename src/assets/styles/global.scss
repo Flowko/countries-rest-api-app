@@ -1,0 +1,15 @@
+/*
+* === COLORS ===
+*/
+:root {
+    --app-white-color: hsl(0, 0%, 100%);
+    --app-background-color: #FAFAFA;
+    --app-text-color: hsl(200, 15%, 8%);
+    --app-elements-background-color: #FFFFFF;
+}
+
+[class="dark-theme"] {
+    --app-background-color: #202D36;
+    --app-text-color: hsl(0, 0%, 100%);
+    --app-elements-background-color: #2B3743;
+}
