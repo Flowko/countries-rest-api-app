@@ -47,30 +47,19 @@ export default createStore({
           }
         })
     },
-    getCountrybyCode({commit,dispatch},data){
-      if(data.code){
-        axios.get(`https://restcountries.eu/rest/v2/alpha/${data.code}`)
-        .then(response => {
-          commit('SET_COUNTRY',response.data)
-          dispatch('getCountryName',response.data)
-          if(response.data){
-            commit('SET_LOADING',false)
-          }
-          else {
-            commit('SET_LOADING',true)
-          }
-        })
+    async getCountrybyCode({commit,dispatch},data){
+      if(data.code && data.code.length != 0){
+        const res = await axios.get(`https://restcountries.eu/rest/v2/alpha/${data.code}`);
+        commit('SET_COUNTRY',res.data)
+        dispatch('getCountryName',res.data)
       }
     },
-    getCountryName({commit},data){
+    async getCountryName({commit},data){
       if(data.borders){
         for(var borders in data.borders){
-          axios.get(`https://restcountries.eu/rest/v2/alpha/${data.borders[borders]}`)
-          .then(response => {
-            commit('SET_COUNTRY_BORDER',response.data.name)
-          })
+          const res = await axios.get(`https://restcountries.eu/rest/v2/alpha/${data.borders[borders]}`);
+          commit('SET_COUNTRY_BORDER',res.data.name)
         }
-        
       }
     },
     async getSearchResults({commit},query){
@@ -82,7 +71,16 @@ export default createStore({
         const res = await axios.get(`https://restcountries.eu/rest/v2/all`);
         commit('SEARCH_RESULTS',res.data) 
       }
-      
+    },
+    async getCountriesByRegion({commit},region){
+      if(region && region.length != 0){
+        const res = await axios.get(`https://restcountries.eu/rest/v2/region/${region}`);
+        commit('SEARCH_RESULTS',res.data) 
+      }
+      else {
+        const res = await axios.get(`https://restcountries.eu/rest/v2/all`);
+        commit('SEARCH_RESULTS',res.data) 
+      }
     }
   },
   modules: {},

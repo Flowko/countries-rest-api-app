@@ -10,16 +10,16 @@
       </div>
       <div class="column country-info">
         <h2>{{ country.name }}</h2>
-        <div class="row">
+        <div class="row align-start">
           <div class="column">
-            <p><strong>Native Name:</strong> {{ country.nativeName }}</p>
-            <p><strong>Population:</strong> {{ numberWithCommas(country.population) }}</p>
-            <p><strong>Region:</strong> {{ country.region }}</p>
-            <p><strong>Sub Region:</strong> {{ country.subregion }}</p>
-            <p><strong>Capital:</strong> {{ country.capital }}</p>
+            <p v-if="country.nativeName"><strong>Native Name:</strong> {{ country.nativeName }}</p>
+            <p v-if="country.population"><strong>Population:</strong> {{ numberWithCommas(country.population) }}</p>
+            <p v-if="country.region"><strong>Region:</strong> {{ country.region }}</p>
+            <p v-if="country.subregion"><strong>Sub Region:</strong> {{ country.subregion }}</p>
+            <p v-if="country.capital"><strong>Capital:</strong> {{ country.capital }}</p>
           </div>
           <div class="column">
-            <p>
+            <p v-if="country.topLevelDomain">
               <strong>Top Level Domain:</strong>
               {{
                 country.topLevelDomain && country.topLevelDomain.length > 0
@@ -27,7 +27,7 @@
                   : ""
               }}
             </p>
-            <p>
+            <p v-if="country.currencies">
               <strong>Currencies:</strong>
               {{
                 country.currencies && country.currencies.length > 0
@@ -35,7 +35,7 @@
                   : ""
               }}
             </p>
-            <p>
+            <p v-if="country.languages">
               <strong>Languages:</strong>
               {{
                 country.languages && country.languages.length > 0
@@ -121,6 +121,9 @@ export default {
   .icon {
     margin-right: 10px;
   }
+}
+.align-start {
+  align-items: start!important;
 }
 .row {
   display: flex;

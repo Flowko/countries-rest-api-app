@@ -15,9 +15,9 @@
         />
         <div class="country-details">
           <h2>{{ country.name }}</h2>
-          <p><strong>Population:</strong> {{ numberWithCommas(country.population) }}</p>
-          <p><strong>Region:</strong> {{ country.region }}</p>
-          <p><strong>Capital:</strong> {{ country.capital }}</p>
+          <p v-if="country.population"><strong>Population:</strong> {{ numberWithCommas(country.population) }}</p>
+          <p v-if="country.region"><strong>Region:</strong> {{ country.region }}</p>
+          <p v-if="country.capital"><strong>Capital:</strong> {{ country.capital }}</p>
         </div>
       </div>
     </div>

@@ -173,22 +173,27 @@ export default {
         {
           id: 1,
           text: "Africa",
+          value: 'africa'
         },
         {
           id: 2,
           text: "America",
+          value: 'americas'
         },
         {
           id: 3,
           text: "Asia",
+          value: 'asia'
         },
         {
           id: 4,
           text: "Europe",
+          value: 'europe'
         },
         {
           id: 5,
           text: "Oceania",
+          value: 'oceania'
         },
       ],
     };
@@ -208,7 +213,9 @@ export default {
     setRegion(id) {
       if (id != null) {
         this.selectedRegion = this.regions.filter((r) => r.id == id)[0].text;
+        var selectedRegionValue = this.regions.filter((r) => r.id == id)[0].value;
         this.selectOpen = !this.selectOpen;
+        this.$store.dispatch("getCountriesByRegion", selectedRegionValue);
       }
     },
     Search(){
