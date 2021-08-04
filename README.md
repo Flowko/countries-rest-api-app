@@ -2,10 +2,11 @@
 ![Design preview for the Tip calculator app coding challenge](./design/desktop-preview.jpg)
 # 📣 The challenge
 Check the challenge on Frontend Mentor:
+🎉 [App Link](https://countries-app-fm.herokuapp.com/)
 
 🚀 [Countries Rest Api App](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 
-💡 [My Solution](https://www.frontendmentor.io/solutions/vue-js-app-using-scss-48g-ljLEH)
+💡 [My Solution](https://www.frontendmentor.io/solutions/countries-rest-api-app-using-vuejs-and-scss-APDqQ7WBS)
 
 Users should be able to:
 
