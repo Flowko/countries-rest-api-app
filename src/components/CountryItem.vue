@@ -115,7 +115,7 @@ export default {
       margin: 10px 0 0 2%;
       border-radius: 6px;
       overflow: hidden;
-      width: 100%;
+      // width: 100%;
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(2, 300px);
       box-shadow: 1px 1px 14px 2px #0000000f;
