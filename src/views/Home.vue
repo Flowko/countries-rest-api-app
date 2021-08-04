@@ -3,7 +3,7 @@
     <div class="searchSection">
       <div class="customInput">
         <i class="fas fa-search icon"></i>
-        <input type="text" placeholder="Search for a country..." />
+        <input type="text" placeholder="Search for a country..." v-model="query" v-on:input="Search" />
       </div>
       <div class="customSelect" :class="selectOpen ? 'open' : ''">
         <div class="selectedValue" @click="selectOpen = !selectOpen">
@@ -168,6 +168,7 @@ export default {
     return {
       selectedRegion: null,
       selectOpen: false,
+      query: '',
       regions: [
         {
           id: 1,
@@ -193,6 +194,16 @@ export default {
     };
   },
   created() {},
+  watch: {
+    // query: function(val){
+    //   this.$store.dispatch("getSearchResults", val);
+    // }
+  },
+  computed: {
+    searchResult () {
+      return this.$store.getters.searchResult
+    }
+  },
   methods: {
     setRegion(id) {
       if (id != null) {
@@ -200,6 +211,9 @@ export default {
         this.selectOpen = !this.selectOpen;
       }
     },
+    Search(){
+      this.$store.dispatch("getSearchResults", this.query);
+    }
   },
 };
 </script>

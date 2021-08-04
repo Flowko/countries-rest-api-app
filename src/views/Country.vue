@@ -90,11 +90,11 @@ export default {
     this.$store.dispatch("getCountrybyCode", {
       code: this.$route.params.country,
     });
-    setTimeout(() => {
-      this.$store.dispatch("getCountryName", {
-        borders: this.country.borders,
-      });
-    }, 500);
+    // setTimeout(() => {
+    //   this.$store.dispatch("getCountryName", {
+    //     borders: this.country.borders,
+    //   });
+    // }, 500);
   },
   created() {},
 };
@@ -113,6 +113,10 @@ export default {
   font-size: 16px;
   font-family: "Nunito Sans", sans-serif;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    margin: 40px 0px;
+  }
 
   .icon {
     margin-right: 10px;
@@ -137,7 +141,7 @@ export default {
   .flag-img {
     padding: 20px 50px;
     @media (max-width: 768px) {
-      padding: 20px;
+      padding: 20px 0;
     }
     img {
       width: 100%;
@@ -148,7 +152,7 @@ export default {
     color: var(--app-text-color);
     padding: 20px 50px;
     @media (max-width: 768px) {
-      padding: 20px;
+      padding: 20px 0;
     }
 
     h2 {

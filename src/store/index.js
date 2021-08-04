@@ -24,11 +24,15 @@ export default createStore({
     SET_LOADING(state,loading){
       state.isloading = loading;
     },
+    SEARCH_RESULTS(state,result){
+      state.countries = result;
+    }
   },
   getters: {
     getCountryBorders: (state) => {
       return state
-    }
+    },
+    searchResult: (state) => state.countries,
   },
   actions: {
     getCountries({commit}){
@@ -43,11 +47,12 @@ export default createStore({
           }
         })
     },
-    getCountrybyCode({commit},data){
+    getCountrybyCode({commit,dispatch},data){
       if(data.code){
         axios.get(`https://restcountries.eu/rest/v2/alpha/${data.code}`)
         .then(response => {
           commit('SET_COUNTRY',response.data)
+          dispatch('getCountryName',response.data)
           if(response.data){
             commit('SET_LOADING',false)
           }
@@ -67,6 +72,17 @@ export default createStore({
         }
         
       }
+    },
+    async getSearchResults({commit},query){
+      if(query && query.length != 0){
+        const res = await axios.get(`https://restcountries.eu/rest/v2/name/${query}`);
+        commit('SEARCH_RESULTS',res.data) 
+      }
+      else {
+        const res = await axios.get(`https://restcountries.eu/rest/v2/all`);
+        commit('SEARCH_RESULTS',res.data) 
+      }
+      
     }
   },
   modules: {},
