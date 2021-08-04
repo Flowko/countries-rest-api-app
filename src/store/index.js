@@ -16,7 +16,7 @@ export default createStore({
     },
     SET_COUNTRY(state,country){
       state.country = country;
-      
+      state.borders = [];
     },
     SET_COUNTRY_BORDER(state,borderName){
       state.borders.push(borderName);
@@ -58,7 +58,7 @@ export default createStore({
       if(data.borders){
         for(var borders in data.borders){
           const res = await axios.get(`https://restcountries.eu/rest/v2/alpha/${data.borders[borders]}`);
-          commit('SET_COUNTRY_BORDER',res.data.name)
+          commit('SET_COUNTRY_BORDER',res.data)
         }
       }
     },

@@ -55,8 +55,9 @@
             v-for="(border, index) in borders"
             v-bind:key="index"
             class="country-border"
+            @click="openBorderCountry(border.alpha3Code)"
           >
-            {{ border }}
+            {{ border.name }}
           </a>
         </div>
       </div>
@@ -77,6 +78,12 @@ export default {
       return this.$store.state.borders;
     },
   },
+  watch: {
+    $route() {
+      // react to route changes...
+      this.$router.go(0);
+    }
+  },
   methods: {
     goBack() {
       this.$router.push(`/`);
@@ -84,6 +91,12 @@ export default {
     numberWithCommas(x) {
       if(x)
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    openBorderCountry(id){
+      this.$router.push(`/country/${id}`);
+      this.$store.dispatch("getCountrybyCode", {
+        code: this.$route.params.country,
+      });
     }
   },
   mounted() {
@@ -172,6 +185,7 @@ export default {
 
     .border-countries {
       .country-border {
+        cursor: pointer;
         margin: 5px 10px 5px 5px;
         background-color: var(--app-elements-background-color);
         color: var(--app-text-color);
